@@ -1,0 +1,859 @@
+GUVI: Zen Class — Part 1: Find the culprits and nail them — debugging javascript
+
+Find the culprit
+
+fix.html
+
+1.
+<!DOCTYPE html>
+<html>
+<body>
+ <script>
+ alert( “I’m JavaScript!’);
+ </script>
+ Whats the error in this ?
+</body>
+</html>
+
+ANS- 
+<!DOCTYPE html>
+<html>
+<body>
+  Whats the error in this ?
+ <script>
+ alert("I’m JavaScript!");
+ </script>
+</body>
+</html>
+
+2.
+fix.html
+<!DOCTYPE html>
+<html>
+<body>
+ <script src=”script.js”></script>
+</body>
+</html>
+
+scripts.js
+alert(“I’m invoked!”);
+
+ANS
+fix.html
+<!DOCTYPE html>
+<html>
+<body>
+<script src="scripts.js"></script>
+</body>
+</html>
+
+scripts.js
+alert("I’m invoked!");
+
+3.
+Explain the below how it works
+
+explain.html
+<!DOCTYPE html>
+<html>
+<body>
+ <script src=”script.js”></script>
+</body>
+</html>
+
+script.js
+alert("I'm JavaScript!");
+alert('Hello') // this line is not having semicolon
+alert(`Wor
+ ld`)
+alert(3 +
+1
++ 2); // this is multiple line code and its working
+
+ANS-
+i) In HTML file, inside the body tag we are linking the javascript file inside script tag.
+ii) In javascript file, we are giving alerts which will be executed one after the other.
+iii) In alert, first "I'm JavaScript!" will appear in dialog box. Once "OK" is clicked then 'Hello' will appear in the dailog box, after clicking "OK", the template literal `Wor
+ ld` will appear in dialog box and once "OK" is clicked the alert (3 +
+1
++ 2) will calculate the sum and show the result "6" in dialog box and "OK" has to be clicked.
+
+4.
+Fix the below to alert Guvi geek
+fix.html
+
+<!DOCTYPE html>
+<html>
+<body>
+ <script src=”script.js”></script>
+</body>
+</html>
+
+script.js
+
+let admin=9, fname=10.5; 
+fname = "Guvi";
+lname = "geek"
+admin = fname+lname;
+alert( admin ); // "Guvi geek"
+
+ANS-
+fix.html
+
+<!DOCTYPE html>
+<html>
+<body>
+ <script src="script.js"></script>
+</body>
+</html>
+
+script.js
+
+let admin=9, fname=10.5; 
+fname = "Guvi";
+let lname = "geek";
+admin = fname+" "+lname;
+alert( admin ); // "Guvi geek"
+
+5.
+Fix the below to alert hello Guvi geek
+
+fix.html
+
+<!DOCTYPE html>
+<html>
+<body>
+ <script src=”script.js”></script>
+</body>
+</html>
+
+script.js
+
+let fname=10.5; 
+fname = "Guvi";
+lname = "geek"
+let name = fname+lname;
+alert( 'hello ${name}' );
+
+ANS-
+fix.html
+
+<!DOCTYPE html>
+<html>
+<body>
+ <script src="script.js"></script>
+</body>
+</html>
+
+script.js
+
+let fname=10.5; 
+fname = "Guvi";
+let lname = "geek";
+let name = fname+" "+lname;
+alert( `hello ${name}` );//using template literal
+
+
+6.
+Fix the below to alert sum of two numbers
+
+fix.html
+
+<!DOCTYPE html>
+<html>
+<body>
+ <script src=”script.js”></script>
+</body>
+</html>
+
+script.js
+
+let a = prompt("First number?");
+let b = prompt("Second number?");
+alert(a + b);
+
+ANS-
+fix.html
+
+<!DOCTYPE html>
+<html>
+<body>
+ <script src="script.js"></script>
+</body>
+</html>
+
+script.js
+
+let a = parseInt(prompt("First number?"));
+let b = parseInt(prompt("Second number?"));
+alert(a + b);
+
+7.
+Fix the below to alert sum of two numbers
+
+fix.html
+
+<!DOCTYPE html>
+<html>
+<body>
+ <script src=”script.js”></script>
+</body>
+</html>
+
+script.js
+
+let a = prompt("First number?");
+let b = prompt("Second number?");
+alert(a + b);
+
+ANS-
+fix.html
+
+<!DOCTYPE html>
+<html>
+<body>
+ <script src="script.js"></script>
+</body>
+</html>
+
+script.js
+
+let a = parseInt(prompt("First number?"));
+let b = parseInt(prompt("Second number?"));
+alert(a + b);
+
+8.
+If you run the below scritpt you will get “Code is Blasted”
+
+Explain Why the Code is blasted and how to diffuse it and get “Diffused”.
+
+fix.html
+
+<!DOCTYPE html>
+<html>
+<body>
+ <script src=”script.js”></script>
+</body>
+</html>
+
+script.js
+
+var a = "2" > "12";
+//Don't touch below this
+if (a) {
+  console.log("Code is Blasted")
+}
+else
+{
+  console.log("Diffused") 
+}
+
+ANS-In the given code in script.js, the variable 'a' stores a boolean value (true or false) depending upon the comparison. As the compared numbers are taken in form of string values so, here each character of the first string is compared with each character of the second string by the order of dictionary. As the firch char "2" of the first string is greater than the fisrt char "1" of second string "12" so, it decides "2" to be greater than "12" without any further checking. As, in the code we have "2">"12" so it returns "true" and stores true in variable 'a'. As 'a' is true, it prints "Code is Blasted". Now, if we just modify the code and write "2" < "12" then it will return "false" and so the else condition will run and it will print "Diffused".
+
+Code for printing Diffused-
+fix.html
+
+<!DOCTYPE html>
+<html>
+<body>
+ <script src=”script.js”></script>
+</body>
+</html>
+
+script.js
+
+var a = "2" < "12"; //returns false
+//Don't touch below this
+if (a) {
+  console.log("Code is Blasted")
+}
+else
+{
+  console.log("Diffused") //else condition runs and "Diffused" is printed
+}
+
+OUTPUT-
+Diffused
+
+9.
+How to get the success in console.
+
+fix.html
+
+<!DOCTYPE html>
+<html>
+<body>
+ <script src=”script.js”></script>
+</body>
+</html>
+
+script.js
+
+let a = prompt("Enter a number?");
+//Don't modify any code below this
+if (a) {
+ console.log( 'OMG it works for any number inc 0' );
+}
+else
+{
+ console.log( "Success" );
+}
+
+ANS- If we enter any number in prompt, then code prints 'OMG it works for any number inc 0' in console. If we do not enter any number in prompt window and click on "OK" then the else condition given in the code is satisfied and it prints "Success" in console.
+
+10.
+How to get the correct score in console.
+
+fix.html
+
+<!DOCTYPE html>
+<html>
+<body>
+ <script src=”script.js”></script>
+</body>
+</html>
+
+script.js
+
+let value = prompt('How many runs you scored in this ball');
+if (value === 4) {
+      console.log("You hit a Four");
+} else if (value === 6) {
+      console.log("You hit a Six");
+} else {
+      console.log("I couldn't figure out");
+}
+
+ANS-
+The variable 'value' is having string datatype, so the input is considered to be string. Now, value is compared to integer 6 or 4 using triple equal to which implies that it will compare the input of variable 'value' with integer 6 or 4 and it will also check whether the datatype of  variable 'value' and the datatype of 6 or 4 is equal or not, if both the data and datatype are equal then it will return true. In this case, the datatype of 'value' is not equal to integer 4 or 6 so, it is giving "I couldn't figure out" in console in all cases. If we replace triple equal to with double equal to then the input of variable 'value' will be compared only with the value 6 or 4 and not the datatype for equality check and thus it will give the correct score in console.
+
+CODE-
+
+fix.html
+
+<!DOCTYPE html>
+<html>
+<body>
+ <script src=”script.js”></script>
+</body>
+</html>
+
+script.js
+
+let value = prompt('How many runs you scored in this ball');
+if (value == 4) {
+      console.log("You hit a Four");
+} else if (value == 6) {
+      console.log("You hit a Six");
+} else {
+      console.log("I couldn't figure out");
+}
+ 
+11.
+Fix the code to welcome the Employee
+
+fix.html
+
+<!DOCTYPE html>
+<html>
+<body>
+ <script src=”script.js”></script>
+</body>
+</html>
+
+script.js
+
+let login = 'Employee';
+let message = (login == 'Employee') ? :
+  (login == 'Director') ? 'Greetings' :
+  (login == '') ? 'No login' :
+  '';
+console.log(message);
+
+ANS-
+fix.html
+
+<!DOCTYPE html>
+<html>
+<body>
+ <script src=”script.js”></script>
+</body>
+</html>
+
+script.js
+
+let login = 'Employee';
+let message = (login == 'Employee') ?
+  (login == 'Director') ? 'Greetings' :
+  (login == '') ? 'No login' :
+  login:'';
+console.log(message);
+
+OUTPUT-
+Employee
+
+12.
+Fix the code to welcome the boss
+
+fix.html
+
+<!DOCTYPE html>
+<html>
+<body>
+ <script src=”script.js”></script>
+</body>
+</html>
+
+script.js
+
+// You cant change the value of the msg
+let message;
+if (null || 2 || undefined )
+{
+ let message = "welcome boss";
+}
+else
+{
+ let message = "Go away";
+}
+  console.log(message);
+
+ANS-
+fix.html
+
+<!DOCTYPE html>
+<html>
+<body>
+ <script src=”script.js”></script>
+</body>
+</html>
+
+script.js
+
+// You cant change the value of the msg
+let message;
+if (null || 2 || undefined )
+{
+ message = "welcome boss";
+}
+else
+{
+ message = "Go away";
+}
+  console.log(message);
+ 
+OUTPUT-
+welcome boss
+
+13.
+Fix the code to welcome the boss
+
+fix.html
+
+<!DOCTYPE html>
+<html>
+<body>
+ <script src=”script.js”></script>
+</body>
+</html>
+
+script.js
+
+let message;
+let lock = 2;
+//Dont change any code below this 
+if (null || lock || undefined )
+{
+  message = "Go away";
+}
+else
+{
+ message = "welcome";
+}
+  console.log(message);
+
+ANS-
+fix.html
+
+<!DOCTYPE html>
+<html>
+<body>
+ <script src=”script.js”></script>
+</body>
+</html>
+
+script.js
+
+let message;
+let lock;
+//Dont change any code below this 
+if (null || lock || undefined )
+{
+  message = "Go away";
+}
+else
+{
+ message = "welcome";
+}
+  console.log(message);
+
+OUTPUT-
+welcome
+
+14.
+Fix the code to welcome the boss
+
+fix.html
+
+<!DOCTYPE html>
+<html>
+<body>
+ <script src=”script.js”></script>
+</body>
+</html>
+
+script.js
+
+let message;
+let lock = 2;
+//Dont change any code below this
+if (lock && " " || undefined )
+{
+  message = "Go away";
+}
+else
+{
+ message = "welcome";
+}
+console.log(message);
+
+ANS-
+
+fix.html
+
+<!DOCTYPE html>
+<html>
+<body>
+ <script src=”script.js”></script>
+</body>
+</html>
+
+script.js
+
+let message;
+let lock;
+//Dont change any code below this
+if (lock && " " || undefined )
+{
+  message = "Go away";
+}
+else
+{
+ message = "welcome";
+}
+console.log(message);
+
+OUTPUT-
+welcome
+
+15.
+Change the code to print
+
+3
+
+2
+
+1
+
+fix.html
+
+<!DOCTYPE html>
+<html>
+<body>
+ <script src=”script.js”></script>
+</body>
+</html>
+
+script.js
+
+//You can change only 2 characters
+let i = 3;
+while (i) {
+  console.log( --i );
+}
+
+ANS-
+fix.html
+
+<!DOCTYPE html>
+<html>
+<body>
+ <script src=”script.js”></script>
+</body>
+</html>
+
+script.js
+
+//You can change only 2 characters
+let i = 3;
+while (i) {
+  console.log( i-- );
+}
+
+OUTPUT-
+3
+2
+1
+
+16.
+Change the code to print 1 to 10 in 4 lines
+
+fix.html
+
+<!DOCTYPE html>
+<html>
+<body>
+ <script src=”script.js”></script>
+</body>
+</html>
+
+script.js
+
+let num = 1
+console.log(num)
+num += 1
+console.log(num)
+num += 1
+console.log(num)
+num += 1
+console.log(num)
+num += 1
+console.log(num)
+num += 1
+console.log(num)
+num += 1
+console.log(num)
+num += 1
+console.log(num)
+num += 1
+console.log(num)
+num += 1
+console.log(num)
+
+ANS
+fix.html
+
+<!DOCTYPE html>
+<html>
+<body>
+ <script src=”script.js”></script>
+</body>
+</html>
+
+script.js
+
+let num = 1;
+var i;
+for( i=num;i<=10;i++) //looping starts
+ console.log(i);
+
+OUTPUT
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+
+17.
+Change the code to print even numbers
+
+fix.html
+
+<!DOCTYPE html>
+<html>
+<body>
+ <script src=”script.js”></script>
+</body>
+</html>
+
+script.js
+
+//You are allowed to modify only one character 
+for (let num = 2; num <= 20; num += 1) {
+  console.log(num)
+}
+
+ANS
+fix.html
+
+<!DOCTYPE html>
+<html>
+<body>
+ <script src=”script.js”></script>
+</body>
+</html>
+
+script.js
+
+//You are allowed to modify only one character 
+for (let num = 2; num <= 20; num += 2) {        //incrementing +2 in each iteration in the loop
+  console.log(num)
+}
+
+OUTPUT
+2
+4
+6
+8
+10
+12
+14
+16
+18
+20
+
+18.
+Change the code to print all the gifts
+
+fix.html
+
+<!DOCTYPE html>
+<html>
+<body>
+ <script src=”script.js”></script>
+</body>
+</html>
+
+script.js
+
+let gifts = ["teddy bear", "drone", "doll"];
+for (let i = 0; i < 3; i++) {
+  console.log('Wrapped ${'gifts[i]'} and added a bow!');
+}
+
+ANS-
+fix.html
+
+<!DOCTYPE html>
+<html>
+<body>
+ <script src=”script.js”></script>
+</body>
+</html>
+
+script.js
+
+let gifts = ["teddy bear", "drone", "doll"];
+for (let i = 0; i < 3; i++) {
+  console.log(`Wrapped ${gifts[i]} and added a bow!`);    //using template literal
+}
+
+OUTPUT
+Wrapped teddy bear and added a bow!
+Wrapped drone and added a bow!
+Wrapped doll and added a bow!
+
+19.
+Fix the code to disarm the bomb.
+
+fix.html
+
+<!DOCTYPE html>
+<html>
+<body>
+ <script src=”script.js”></script>
+</body>
+</html>
+
+script.js
+
+let countdown = 100;
+while (countdown > 0) {
+  countdown--;
+  if(countdown == 0)
+  {
+   console.log("bomb triggered");
+  }
+}
+
+ANS
+fix.html
+
+<!DOCTYPE html>
+<html>
+<body>
+ <script src=”script.js”></script>
+</body>
+</html>
+
+script.js
+
+let countdown = 100;
+while (countdown > 0) {
+  countdown--;
+}
+if(countdown == 0)
+{
+ console.log("bomb disarmed");
+}
+
+OUTPUT
+bomb disarmed
+
+20.
+Whats the msg printed and why?
+
+var lemein = “0”;
+var lemeout = 0;
+var msg = “”;
+if (lemein) {
+ msg += “hi”;
+ }
+if (lemeout) {
+ msg += ‘Hello’;
+}
+console.log(msg);
+
+ANS-
+OUTPUT-
+hi
+REASON- The string value of lemein ("0") is considered true and the integer value of lemeout (0) is considered false. So, the first if condition is satisfied and the second if condition is not satisfied.
+
+21.
+Whats the msg printed and why? Guess you answer before running it.
+
+var lemein = “0”;
+var lemeout = 0;
+var msg = “”;
+if (lemein) {
+ msg += “hi”;
+ }
+if (lemeout) {
+ msg += ‘Hello’;
+}
+console.log(msg);
+
+ANS-
+OUTPUT-
+hi
+REASON- The string value of lemein ("0") is considered true and the integer value of lemeout (0) is considered false. So, the first if condition is satisfied and the second if condition is not satisfied.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
